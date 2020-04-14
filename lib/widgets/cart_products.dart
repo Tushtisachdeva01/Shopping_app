@@ -2,25 +2,47 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/providers/cart.dart';
 
-
-
 class CartProduct extends StatelessWidget {
   final String id;
   final double price;
   final int quantity;
   final String title;
-  final String productId; 
+  final String productId;
 
-
-  CartProduct({this.id, this.price, this.quantity, this.title,this.productId});
+  CartProduct({this.id, this.price, this.quantity, this.title, this.productId});
 
   @override
   Widget build(BuildContext context) {
     return Dismissible(
+      confirmDismiss: (direction) {
+        return showDialog(
+          context: context,
+          builder: (ctx) => AlertDialog(
+            title: Text('Are you sure?'),
+            content: Text(
+              'Pakkaaa???',
+            ),
+            actions: <Widget>[
+              FlatButton(
+                onPressed: () {
+                  Navigator.of(ctx).pop(false);
+                },
+                child: Text('NO'),
+              ),
+              FlatButton(
+                onPressed: () {
+                  Navigator.of(ctx).pop(true);
+                },
+                child: Text('Yes'),
+              ),
+            ],
+          ),
+        );
+      },
       key: ValueKey(id),
       direction: DismissDirection.endToStart,
       onDismissed: (direction) {
-        Provider.of<Cart>(context,listen: false).removeItem(productId);
+        Provider.of<Cart>(context, listen: false).removeItem(productId);
       },
       background: Container(
         color: Theme.of(context).errorColor,

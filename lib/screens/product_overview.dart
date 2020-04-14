@@ -40,7 +40,7 @@ class _ProductOverviewState extends State<ProductOverview> {
               PopupMenuItem(
                 child: Text('Show All'),
                 value: Filter.all,
-              )
+              ),
             ],
           ),
           Consumer<Cart>(
