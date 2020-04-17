@@ -54,10 +54,13 @@ class ProductItem extends StatelessWidget {
                   content: Text(
                     'Added item to cart',
                   ),
-                  duration: Duration(seconds: 2),
-                  action: SnackBarAction(label: 'Undo', onPressed: () {
-                    cart.removeSingle(product.id);
-                  }),
+                  duration: Duration(seconds: 1),
+                  action: SnackBarAction(
+                      label: 'Undo',
+                      onPressed: () {
+                        cart.removeSingle(product.id);
+                      }),
+                  behavior: SnackBarBehavior.floating
                 ),
               );
             },
